@@ -5,6 +5,31 @@ import { ProductCategoryRow } from './ProductCategoryRow'
 import { ProductRow } from './ProductRow'
 
 export const ProductTable = ({ products }) => {
+  const categorizedProducts = products.reduce((acc, product) => {
+    acc[product.category] =
+      acc[product.category] ?
+        acc[product.category].concat(product) : [product]
+
+    return acc
+  }, {})
+
+  const categories = Object.keys(categorizedProducts)
+
+  const renderProductRows = (products) => {
+    return products.map(({ name, price }) => <ProductRow key={name} name={name} price={price} />)
+  }
+
+  const renderTableBody = () => {
+    return categories.map((category, i) => {
+      return (
+        <Fragment key={i}>
+          <ProductCategoryRow key={category} category={category} />
+          {renderProductRows(categorizedProducts[category])}
+        </Fragment>
+      )
+    })
+  }
+
   return (
     <table>
       <thead>
