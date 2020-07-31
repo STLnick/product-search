@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { ProductTable } from './ProductTable'
 import { SearchBar } from './SearchBar'
@@ -7,31 +7,36 @@ import './ProductSearchDisplay.css'
 
 import api from 'api'
 
-export class ProductSearchDisplay extends React.Component {
-  state = {
-    filteredProducts: [],
-    products: [],
-    searchText: ''
-  }
+export const ProductSearchDisplay = () => {
+  const [filteredProducts, setFilteredProducts] = useState([])
+  const [products, setProducts] = useState([])
+  const [searchText, setSearchText] = useState('')
 
-  handleSearchTextChange = (e) => {
+  const handleSearchTextChange = (e) => {
     const newSearch = e.target.value.toLowerCase()
-    const newFilteredProducts = this.state.products.filter(product => product.name.toLowerCase().includes(newSearch))
-    this.setState({ filteredProducts: newFilteredProducts, searchText: newSearch })
+    const newFilteredProducts = products.filter(product => product.name.toLowerCase().includes(newSearch))
+
+    setFilteredProducts(newFilteredProducts)
+    setSearchText(newSearch)
   }
 
-  async componentDidMount() {
-    const products = await api.index()
-    this.setState({ filteredProducts: products, products })
-  }
+  // TODO: Need to prevent this from rerendering everything on typing
+  useEffect(() => {
+    const fetchData = async () => {
+      const products = await api.index()
+      setFilteredProducts(products)
+      setProducts(products)
+    }
 
-  render() {
-    return (
-      <div className="wrapper flex flex--column flex--align-center flex--justify-between">
-        <SearchBar handler={this.handleSearchTextChange} text={this.state.searchText} />
-        <ProductTable products={this.state.filteredProducts} />
-        <div className="spacer"></div>
-      </div>
-    )
-  }
+    if (products === [])
+      fetchData()
+  })
+
+  return (
+    <div className="wrapper flex flex--column flex--align-center flex--justify-between">
+      <SearchBar handler={handleSearchTextChange} text={searchText} />
+      <ProductTable products={filteredProducts} />
+      <div className="spacer"></div>
+    </div>
+  )
 }
