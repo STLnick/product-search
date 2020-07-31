@@ -18,6 +18,11 @@ export class ProductSearchDisplay extends React.Component {
     this.setState({ filteredProducts: newFilteredProducts, searchText: newSearch })
   }
 
+  async componentDidMount() {
+    const products = await api.index()
+    this.setState({ filteredProducts: products, products })
+  }
+
   render() {
     return (
       <div>
