@@ -11,6 +11,13 @@ export class ProductSearchDisplay extends React.Component {
     products: [],
     searchText: ''
   }
+
+  handleSearchTextChange = (e) => {
+    const newSearch = e.target.value.toLowerCase()
+    const newFilteredProducts = this.state.products.filter(product => product.name.toLowerCase().includes(newSearch))
+    this.setState({ filteredProducts: newFilteredProducts, searchText: newSearch })
+  }
+
   render() {
     return (
       <div>
