@@ -1,0 +1,17 @@
+.search-container {
+  margin-bottom: 1rem;
+}
+
+#search {
+  background-color: #eee;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  padding: 0.5rem;
+  transition: box-shadow 0.4s;
+}
+
+#search:focus,
+#search:hover {
+  box-shadow: 0 0 2px 2px dodgerblue;
+}

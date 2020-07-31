@@ -1,0 +1,8 @@
+thead th {
+  color: blue;
+  text-decoration: underline;
+}
+
+tbody th {
+  color: dodgerblue;
+}

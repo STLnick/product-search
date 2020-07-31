@@ -1,0 +1,11 @@
+.wrapper {
+  border: 2px solid dodgerblue;
+  border-radius: 10px;
+  height: 15rem;
+  padding: 2rem;
+  width: 13rem;
+}
+
+.spacer {
+  height: 100%;
+}

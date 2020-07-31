@@ -1,0 +1,54 @@
+.container {
+  height: 100vh;
+  width: 100vw;
+}
+
+/* * Reuseable Classes * */
+
+.screen-reader-text {
+  left: -99999px;
+  position: absolute;
+  top: -99999px;
+}
+
+/* Flex Classes */
+
+.flex {
+  display: flex;
+}
+
+.flex--column {
+  flex-direction: column;
+}
+
+.flex--justify-around {
+  justify-content: space-around;
+}
+
+.flex--justify-between {
+  justify-content: space-between;
+}
+
+.flex--justify-center {
+  justify-content: center;
+}
+
+.flex--justify-end {
+  justify-content: flex-end;
+}
+
+.flex--justify-evenly {
+  justify-content: space-evenly;
+}
+
+.flex--align-center {
+  align-items: center;
+}
+
+.flex--align-end {
+  align-items: flex-end;
+}
+
+.flex--wrap {
+  flex-wrap: wrap;
+}
