@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export const ProductRow = ({ products }) => products.map(product => (
-  <tr key={product.name}>
-    <td>{product.name}</td>
-    <td>{product.price}</td>
+export const ProductRow = ({ name, price }) => (
+  <tr>
+    <td>{name}</td>
+    <td>{price}</td>
   </tr>
 )
 
