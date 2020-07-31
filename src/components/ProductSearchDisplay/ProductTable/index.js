@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 import { ProductCategoryRow } from './ProductCategoryRow'
 import { ProductRow } from './ProductRow'
 
+import './ProductTable.css'
+
 export const ProductTable = ({ products }) => {
   const categorizedProducts = products.reduce((acc, product) => {
     acc[product.category] =
