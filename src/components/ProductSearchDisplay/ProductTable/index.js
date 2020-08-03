@@ -22,7 +22,7 @@ export const ProductTable = ({ loading, products }) => {
   }
 
   const renderTableBody = () => {
-    return loading ? (<div>LOADING...</div>) : categories.map((category, i) => {
+    return loading ? (<tr><td>Loading...</td></tr>) : categories.map((category, i) => {
       return (
         <Fragment key={i}>
           <ProductCategoryRow key={category} category={category} />
