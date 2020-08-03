@@ -20,7 +20,6 @@ export const ProductSearchDisplay = () => {
     setSearchText(newSearch)
   }
 
-  // TODO: Need to prevent this from rerendering everything on typing
   useEffect(() => {
     const fetchData = async () => {
       const products = await api.index()
