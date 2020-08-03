@@ -18,7 +18,7 @@ export const ProductTable = ({ loading, products }) => {
   const categories = Object.keys(categorizedProducts)
 
   const renderProductRows = (products) => {
-    return products.map(({ name, price }) => <ProductRow key={name} name={name} price={price} />)
+    return products.map(({ name, price, stocked }) => <ProductRow key={name} inStock={stocked} name={name} price={price} />)
   }
 
   const renderTableBody = () => {
