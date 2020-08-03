@@ -6,7 +6,7 @@ import { ProductRow } from './ProductRow'
 
 import './ProductTable.css'
 
-export const ProductTable = ({ products }) => {
+export const ProductTable = ({ loading, products }) => {
   const categorizedProducts = products.reduce((acc, product) => {
     acc[product.category] =
       acc[product.category] ?
@@ -22,7 +22,7 @@ export const ProductTable = ({ products }) => {
   }
 
   const renderTableBody = () => {
-    return categories.map((category, i) => {
+    return loading ? (<div>LOADING...</div>) : categories.map((category, i) => {
       return (
         <Fragment key={i}>
           <ProductCategoryRow key={category} category={category} />
@@ -48,5 +48,6 @@ export const ProductTable = ({ products }) => {
 }
 
 ProductTable.propTypes = {
+  loading: PropTypes.bool,
   products: PropTypes.array
 }

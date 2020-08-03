@@ -11,6 +11,7 @@ export const ProductSearchDisplay = () => {
   const [filteredProducts, setFilteredProducts] = useState([])
   const [products, setProducts] = useState([])
   const [searchText, setSearchText] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleSearchTextChange = (e) => {
     const newSearch = e.target.value.toLowerCase()
@@ -22,9 +23,13 @@ export const ProductSearchDisplay = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true)
+
       const products = await api.index()
       setFilteredProducts(products)
       setProducts(products)
+
+      setIsLoading(false)
     }
     fetchData()
   }, [])
@@ -32,7 +37,7 @@ export const ProductSearchDisplay = () => {
   return (
     <div className="wrapper flex flex--column flex--align-center flex--justify-between">
       <SearchBar handler={handleSearchTextChange} text={searchText} />
-      <ProductTable products={filteredProducts} />
+      <ProductTable loading={isLoading} products={filteredProducts} />
       <div className="spacer"></div>
     </div>
   )
