@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import './SearchBar.css'
+import './FilterBar.css'
 
-export const SearchBar = ({ checkboxHandler, textHandler, text }) => {
+export const FilterBar = ({ checkboxHandler, textHandler, text }) => {
 
   return (
     <div className="search-container">
@@ -17,7 +17,7 @@ export const SearchBar = ({ checkboxHandler, textHandler, text }) => {
   )
 }
 
-SearchBar.propTypes = {
+FilterBar.propTypes = {
   checkboxHandler: PropTypes.func,
   textHandler: PropTypes.func,
   text: PropTypes.string

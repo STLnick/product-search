@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import { ProductTable } from './ProductTable'
-import { SearchBar } from './SearchBar'
+import { FilterBar } from './FilterBar'
 
 import './ProductSearchDisplay.css'
 
@@ -12,7 +12,7 @@ export const ProductSearchDisplay = () => {
   const [isChecked, setIsChecked] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [products, setProducts] = useState([])
-  const [searchText, setSearchText] = useState('')
+  const [filterText, setFilterText] = useState('')
 
   const filterProducts = (text, showStockedOnly) => {
     if (showStockedOnly) {
@@ -21,9 +21,9 @@ export const ProductSearchDisplay = () => {
     return products.filter(product => product.name.toLowerCase().includes(text))
   }
 
-  const handleSearchTextChange = (e) => {
+  const handleFilterTextChange = (e) => {
     const newSearch = e.target.value.toLowerCase()
-    setSearchText(newSearch)
+    setFilterText(newSearch)
 
     const newFilteredProducts = filterProducts(newSearch, isChecked)
     setFilteredProducts(newFilteredProducts)
@@ -33,7 +33,7 @@ export const ProductSearchDisplay = () => {
     const checked = e.target.checked
     setIsChecked(checked)
 
-    const newFilteredProducts = filterProducts(searchText, checked)
+    const newFilteredProducts = filterProducts(filterText, checked)
     setFilteredProducts(newFilteredProducts)
   }
 
@@ -52,7 +52,7 @@ export const ProductSearchDisplay = () => {
 
   return (
     <div className="wrapper flex flex--column flex--align-center flex--justify-between">
-      <SearchBar checkboxHandler={handleCheckboxChange} textHandler={handleSearchTextChange} text={searchText} />
+      <FilterBar checkboxHandler={handleCheckboxChange} textHandler={handleFilterTextChange} text={filterText} />
       <ProductTable loading={isLoading} products={filteredProducts} />
       <div className="spacer"></div>
     </div>
