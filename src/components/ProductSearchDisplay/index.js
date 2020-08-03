@@ -14,32 +14,27 @@ export const ProductSearchDisplay = () => {
   const [products, setProducts] = useState([])
   const [searchText, setSearchText] = useState('')
 
+  const filterProducts = (text, showStockedOnly) => {
+    if (showStockedOnly) {
+      return products.filter(product => product.name.toLowerCase().includes(text) && product.stocked)
+    }
+    return products.filter(product => product.name.toLowerCase().includes(text))
+  }
+
   const handleSearchTextChange = (e) => {
     const newSearch = e.target.value.toLowerCase()
-    let newFilteredProducts
-
-    if (isChecked) {
-      newFilteredProducts = products.filter(product => product.name.toLowerCase().includes(newSearch) && product.stocked)
-    } else {
-      newFilteredProducts = products.filter(product => product.name.toLowerCase().includes(newSearch))
-    }
-
-    setFilteredProducts(newFilteredProducts)
     setSearchText(newSearch)
+
+    const newFilteredProducts = filterProducts(newSearch, isChecked)
+    setFilteredProducts(newFilteredProducts)
   }
 
   const handleCheckboxChange = (e) => {
     const checked = e.target.checked
-    let newFilteredProducts
-
-    if (checked) {
-      newFilteredProducts = products.filter(product => product.name.toLowerCase().includes(searchText) && product.stocked)
-    } else {
-      newFilteredProducts = products.filter(product => product.name.toLowerCase().includes(searchText))
-    }
-
-    setFilteredProducts(newFilteredProducts)
     setIsChecked(checked)
+
+    const newFilteredProducts = filterProducts(searchText, checked)
+    setFilteredProducts(newFilteredProducts)
   }
 
   useEffect(() => {
