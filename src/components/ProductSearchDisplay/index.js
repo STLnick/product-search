@@ -26,11 +26,8 @@ export const ProductSearchDisplay = () => {
       setFilteredProducts(products)
       setProducts(products)
     }
-
-    // If the data hasn't been fetched then make the api call
-    if (products.length === 0)
-      fetchData()
-  })
+    fetchData()
+  }, [])
 
   return (
     <div className="wrapper flex flex--column flex--align-center flex--justify-between">
