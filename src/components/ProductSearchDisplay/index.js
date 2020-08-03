@@ -28,7 +28,8 @@ export const ProductSearchDisplay = () => {
       setProducts(products)
     }
 
-    if (products === [])
+    // If the data hasn't been fetched then make the api call
+    if (products.length === 0)
       fetchData()
   })
 
