@@ -9,9 +9,9 @@ import api from 'api'
 
 export const ProductSearchDisplay = () => {
   const [filteredProducts, setFilteredProducts] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
   const [products, setProducts] = useState([])
   const [searchText, setSearchText] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
 
   const handleSearchTextChange = (e) => {
     const newSearch = e.target.value.toLowerCase()
@@ -30,6 +30,9 @@ export const ProductSearchDisplay = () => {
       setProducts(products)
 
       setIsLoading(false)
+      const products = await api.index()
+      setFilteredProducts(products)
+      setProducts(products)
     }
     fetchData()
   }, [])
