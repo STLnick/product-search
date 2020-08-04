@@ -46,7 +46,7 @@ export const ProductSearchDisplay = () => {
   }
 
   useEffect(() => {
-    const fetchData = async () => {
+    (async () => {
       setIsLoading(true)
 
       const products = await api.index()
@@ -54,8 +54,7 @@ export const ProductSearchDisplay = () => {
       setProducts(products)
 
       setIsLoading(false)
-    }
-    fetchData()
+    })()
   }, [])
 
   return (
