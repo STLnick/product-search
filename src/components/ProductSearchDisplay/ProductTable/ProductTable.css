@@ -6,3 +6,7 @@ thead th {
 tbody th {
   color: dodgerblue;
 }
+
+.out-of-stock {
+  color: red;
+}
